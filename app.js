@@ -52,6 +52,11 @@ function signUp(newUser){
         if (newUser.password.length < 6) {
             throw new Error("password must be at least 6 characters long");
         }
+        let existUser = DATA.find(u => u.username === newUser.username);
+        if (existUser) {
+            throw new Error("This username is already taken.");
+        }
+         
 
         DATA.push(newUser);
         return `Welcome ${newUser.name}, you have successfully signed up`;
